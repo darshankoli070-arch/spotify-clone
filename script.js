@@ -16,7 +16,7 @@ function formatTime(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`http://127.0.0.1:3000/${folder}/`);
+    let a = await fetch(`/${folder}/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -55,7 +55,7 @@ async function getsongs(folder) {
 }
 
 const playMusic = (track, pause = false) => {
-    currentSong.src = `http://127.0.0.1:3000/${currFolder}/` + encodeURIComponent(track);
+    currentSong.src = `/${currFolder}/` + encodeURIComponent(track);
     if (!pause) {
         currentSong.play();
         document.getElementById("play").src = "pause.svg";
@@ -65,7 +65,7 @@ const playMusic = (track, pause = false) => {
 }
 
 async function displayAlbums() {
-    let a = await fetch(`http://127.0.0.1:3000/songs/`);
+    let a = await fetch(`/songs/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -79,13 +79,13 @@ async function displayAlbums() {
             console.log(folder);
 
             try {
-                let infoRes = await fetch(`http://127.0.0.1:3000/songs/${folder}/info.json`);
+                let infoRes = await fetch(`/songs/${folder}/info.json`);
                 let info = await infoRes.json();
 
                 cardContainer.innerHTML += `<div data-folder="${folder}" class="card">
                     <div class="play">
                         <img class="plays" src="play.svg" alt="">
-                        <img src="http://127.0.0.1:3000/songs/${folder}/cover.jpg" alt="">
+                        <img src="/songs/${folder}/cover.jpg" alt="">
                         <h2>${info.title}</h2>
                         <p>${info.description}</p>
                     </div>
