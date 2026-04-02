@@ -57,7 +57,9 @@ body{ background-color:black; color:white; }
 .abovebar{ display:flex; justify-content:space-between; align-items:center; }
 
 @media(max-width:1200px){
-.left{ position:absolute; left:-120%; transition:all .3s; z-index:1; width:370px; background-color:black; }
+.left{ position:absolute; left:-120%; transition:all .3s; z-index:1; width:370px; background-color:black;
+z-index: 20;
+}
 .abovebar{ margin:20px 0; }
 .right{ width:100vw; margin:0; }
 .playbar{ 
@@ -66,6 +68,7 @@ body{ background-color:black; color:white; }
     right:5px;
     padding:8px;
 }
+
 .abovebar{ 
     flex-direction:row;
     gap:5px;
