@@ -55,6 +55,11 @@ const playMusic = (track, pause = false) => {
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
 }
 
+document.querySelector(".range input").value = 100;
+document.querySelector(".range input").addEventListener("input", (e) => {
+    currentSong.volume = parseInt(e.target.value) / 100;
+});
+
 async function displayAlbums() {
     let a = await fetch(`/songs.json`);
     let folderData = await a.json();
