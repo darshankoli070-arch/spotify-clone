@@ -60,6 +60,17 @@ document.querySelector(".range input").addEventListener("input", (e) => {
     currentSong.volume = parseInt(e.target.value) / 100;
 });
 
+
+currentSong.addEventListener("ended", () => {
+    let currentTrack = decodeURIComponent(currentSong.src.split("/").slice(-1)[0]);
+    let idx = songs.indexOf(currentTrack);
+    if(idx < songs.length - 1){
+        playMusic(songs[idx + 1]);
+    }
+});
+
+
+
 async function displayAlbums() {
     let a = await fetch(`/songs.json`);
     let folderData = await a.json();
